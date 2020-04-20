@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Record Covid 19 - Negara</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.25.0/slimselect.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.25.0/slimselect.min.css" rel="stylesheet"></link>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background: #ddd;
+			line-height: 6vh;
+		}
+
+		footer > span {
+			font-size: 13px;
+			font-family: 'Arial';
+		}
+
+		.bg-dark {
+			background: #01426d !important;
+		}
+
+		.bg-custom {
+			background: #d43f8d !important;
+		}
+
+		.bg-danger {
+			background: #f82649 !important;
+		}
+
+		.bg-success {
+			background: #09ad95 !important;
+		}
+
+		.bg-warning {
+			background: #ffc107 !important;
+		}
+
+		.navbar-brand {
+			font-family: 'Nunito', sans-serif;
+			font-size: 22px;
+		}
+
+		#positif,#meninggal,#sembuh,#perawatan {
+			font-size: 18px;
+			font-weight: bold;
+			color: #fff;
+		}
+
+		#positif {
+			padding: 5px 7px 5px 5px;
+			background: #f82649 !important;
+		}
+
+		#meninggal {
+			padding: 5px 7px 5px 5px;
+			background: #d43f8d !important;
+		}
+
+		#sembuh {
+			padding: 5px 7px 5px 5px;
+			background: #09ad95 !important;
+		}
+
+		#perawatan {
+			padding: 5px 7px 5px 5px;
+			background: #ffc107 !important;
+		}
+
+		h6, h5 {
+			font-family: 'Nunito', sans-serif;
+		}
+
+		.nav-link {
+			font-family: 'Nunito', sans-serif;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Recovid</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colnav"><span class="navbar-toggler-icon"></span></button>
+		<div class="collapse navbar-collapse" id="colnav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Provinsi</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container mt-4 mb-5">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-dark text-light rounded-top text-center">
+						<h5>Data Berdasarkan Negara</h5>
+					</div>
+					<div class="card-body">
+						<div class="row justify-content-center mb-4 mt-2">
+							<div class="col-sm-5">
+								<select id="provinsi">
+									<option value="negara">Pilih Negara</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 mb-2">
+								<div class="card rounded">
+									<div class="card-body">
+										<div align="center">
+											<h6>Positif <span class="text-light bg-danger" style="padding: 2px 3px;display: none;" id="newCase"></span></h6>
+											<div id="positif">-</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 mb-2">
+								<div class="card rounded">
+									<div class="card-body">
+										<div align="center">
+											<h6>Meninggal <span class="text-light bg-custom" style="padding: 2px 3px; display: none;" id="newDeath"></span></h6>
+											<div id="meninggal">-</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 mb-2">
+								<div class="card rounded">
+									<div class="card-body">
+										<div align="center">
+											<h6>Sembuh <span class="text-light bg-success" style="padding: 2px 3px;display: none;" id="newRecovered"></span></h6>
+											<div id="sembuh">-</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="card rounded">
+									<div class="card-body">
+										<div align="center">
+											<h6>Perawatan</h6>
+											<div id="perawatan">-</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer rounded-bottom bg-white">
+						<div class="row">
+							<div class="col-6">
+								Data sumber : covid19api.com
+							</div>
+							<div class="col-6 text-right">
+								Update Terakhir : <span id="lastUp">-</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="bg-dark text-light" align="center">
+		<span>&copy;Copyright 2020 Recovid. Made by Ahmad Salim A</span>
+	</footer>
+	<script type="text/javascript">
+		new SlimSelect({
+			select: `#provinsi`
+		})
+		const main = () => {
+			const id = (i) => document.getElementById(`${i}`)
+
+			const setGet = (init) => {
+				let _val = init
+				const getAll = () => _val
+				const set = (newV) => {
+					_val = newV
+				}
+
+				return [getAll, set]
+			}
+
+			const [getAll, set] = setGet(null)
+			const [p,po,m,s,pe,newC,newD,newR,lastU] = [
+					id("provinsi"),
+					id("positif"),
+					id("meninggal"),
+					id("sembuh"),
+					id("perawatan"),
+					id("newCase"),
+					id("newDeath"),
+					id("newRecovered"),
+					id("lastUp")
+			];
+
+			p.onchange = () => {
+				const [val,data] = [p.value,getAll()];
+				const endP = val == "negara" ? 0 : data[val];
+				const isNull = val == "negara" ? true : false;
+				
+				const {
+					NewConfirmed,
+					TotalConfirmed,
+					NewDeaths,
+					TotalDeaths,
+					NewRecovered,
+					TotalRecovered,
+					Date
+				} = endP;
+
+				const [a,b,c,d,e,f,g,h] = [
+					val == "negara" ? `-` : TotalConfirmed,
+					val == "negara" ? `-` : TotalDeaths,
+					val == "negara" ? `-` : TotalRecovered,
+					val == "negara" ? `+` : `+${NewConfirmed}`,
+					val == "negara" ? `+` : `+${NewDeaths}`,
+					val == "negara" ? `+` : `+${NewRecovered}`,
+					val == "negara" ? `-` : Math.floor(TotalConfirmed - (TotalDeaths + TotalRecovered)),
+					val == "negara" ? `-` : Date.replace('T',' ').replace('Z','')
+				];
+
+				isNull == true || d == "+0" ? newC.style.display = `none` : newC.style.display = ``
+				isNull == true || e == "+0" ? newD.style.display = `none` : newD.style.display = ``
+				isNull == true || f == "+0" ? newR.style.display = `none` : newR.style.display = ``
+
+				po.innerHTML = a
+				m.innerHTML = b
+				s.innerHTML = c
+				newC.innerHTML = d
+				newD.innerHTML = e
+				newR.innerHTML = f
+				pe.innerHTML = g
+				lastU.innerHTML = h
+			}
+
+			fetch('https://api.covid19api.com/summary')
+			 .then((res) => res.json())
+			 .then((data) => {
+					set(data.Countries)
+					loop(data.Countries)
+			 })
+
+			 const loop = (data) => {
+			 	for (let i in data) {
+			 		const res = data[i].Country
+
+			 		const opEl = document.createElement("option")
+			 		opEl.text = `${res}`
+			 		opEl.value = `${i}`
+			 		p.add(opEl)
+			 	}
+			 };
+		};
+
+		document.addEventListener("DOMContentLoaded", main);
+	</script>
+</body>
+</html>
